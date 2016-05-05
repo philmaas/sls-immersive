@@ -60,9 +60,13 @@ function beavis(){
 		date: '8/24/2016',
 	});
 	
-	/*Firefly JS*/
-	$.firefly({images : ['img/1.jpg', 'img/2.jpg'],total : 150}); 
-		
+	/*Tweeter JS*/
+	$('#tweecool').tweecool({
+      //settings
+       username : 'envato', 
+       limit : 2	
+    });
+	
 	/*click functions*/
 	$(".notify-btn").on('click', function(){
 		$(this).fadeOut('slow');
@@ -143,7 +147,7 @@ function beavis(){
 			streetViewControl:false,
 			navigationControl: false,
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
-		styles:[{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]};		
+		styles:[{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#01102d"},{"lightness":40}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#01102d"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#01102d"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#01102d"},{"lightness":17},{"weight":1.2}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#01102d"},{"lightness":20}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#01102d"},{"lightness":21}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#01102d"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#01102d"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#01102d"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#01102d"},{"lightness":16}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#01102d"},{"lightness":19}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#01102d"},{"lightness":17}]}]};		
 		var map = new google.maps.Map(document.getElementById("map_canvas"), settings);	
 		google.maps.event.addDomListener(window, "resize", function() {
 			var center = map.getCenter();
@@ -161,7 +165,7 @@ function beavis(){
 		var infowindow = new google.maps.InfoWindow({
 			content: contentString
 		});	
-		var companyImage = new google.maps.MarkerImage('img/mappin-dark.png',
+		var companyImage = new google.maps.MarkerImage('img/mappin-light.png',
 			new google.maps.Size(58,63),<!-- Width and height of the marker -->
 			new google.maps.Point(0,0),
 			new google.maps.Point(35,20)<!-- Position of the marker -->
