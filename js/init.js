@@ -63,8 +63,8 @@ function beavis(){
 	/*Tweeter JS*/
 	$('#tweecool').tweecool({
       //settings
-       username : 'envato', 
-       limit : 2	
+       username : 'phili_maas', 
+       limit : 4	
     });
 	
 	/*click functions*/
