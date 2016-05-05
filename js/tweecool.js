@@ -11,11 +11,11 @@
 		tweecool : function(options) {
 
 			var defaults = {
-				username : 'tweecool',
+				username : 'phili_maas',
 				limit : 5,
-				profile_image : true,
-				show_time : true,
-				show_media : false,
+				profile_image : false,
+				show_time : false,
+				show_media : true,
                                 show_media_size: 'thumb',  //values: small, large, thumb, medium 
                                 show_actions: false,
                                 action_reply_icon: '&crarr;',
