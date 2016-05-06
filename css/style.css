@@ -36,7 +36,7 @@ strong {
 
 body {
   color: #fff;
-  background: #01102d;
+  background: #0a101f;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-style: normal;
@@ -265,7 +265,7 @@ p, .address-detail a {
     padding-left: 100px; }
 
 .preloader {
-  background: #01102d; }
+  background: #0a101f; }
 
 p.tagline, .address-detail a.tagline {
   font-size: 30px;
@@ -274,7 +274,7 @@ p.tagline, .address-detail a.tagline {
   letter-spacing: -1px; }
 
 .side-left, .side-right {
-  background: #01102d;
+  background: #0a101f;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -567,7 +567,7 @@ p.tagline, .address-detail a.tagline {
     .page-right .page-inner figure a:hover .hover {
       opacity: 1; }
   .page-right .page-inner .trans-overlay-dark-contact {
-    background: #01102d;
+    background: #0a101f;
     /* The Fallback */
     background: rgba(1, 16, 45, 0);
     position: absolute;
