@@ -11,11 +11,11 @@
 		tweecool : function(options) {
 
 			var defaults = {
-				username : 'phili_maas',
+				username : 'tweecool',
 				limit : 5,
-				profile_image : false,
+				profile_image : true,
 				show_time : true,
-				show_media : true,
+				show_media : false,
                                 show_media_size: 'thumb',  //values: small, large, thumb, medium 
                                 show_actions: false,
                                 action_reply_icon: '&crarr;',
@@ -58,12 +58,12 @@
 				var o = options;
 				var wrapper = $(this);
 				var wInner = $('<ul>').appendTo(wrapper);
-				var urlpattern = /(\b(http?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+				var urlpattern = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
 				var usernamepattern = /@+(\w+)/ig;
 				var hashpattern = /#+(\w+)/ig;
                                 var pIMG, media, timestamp, abox, mtext;
 
-				$.getJSON("http://www.api.tweecool.com/?screenname=" + o.username + "&count=" + o.limit, function(data) {
+				$.getJSON("http://tweecool.com/api/?screenname=" + o.username + "&count=" + o.limit, function(data) {
 
 					if (data.errors || data == null) {
 						wrapper.html('No tweets available.');
@@ -74,9 +74,9 @@
                                             
                                                 if (o.profile_image) {
                                                     if( o.profile_img_url == 'tweet' ){
-                                                        pIMG = '<a href="http://twitter.com/' + o.username + '/status/'+field.id_str+'" target="_blank"><img src="' + data.user.profile_image_url + '" alt="' + o.username + '" /></a>';
+                                                        pIMG = '<a href="https://twitter.com/' + o.username + '/status/'+field.id_str+'" target="_blank"><img src="' + data.user.profile_image_url + '" alt="' + o.username + '" /></a>';
                                                     }else{
-                                                        pIMG = '<a href="http://twitter.com/' + o.username + '" target="_blank"><img src="' + data.user.profile_image_url + '" alt="' + o.username + '" /></a>';
+                                                        pIMG = '<a href="https://twitter.com/' + o.username + '" target="_blank"><img src="' + data.user.profile_image_url + '" alt="' + o.username + '" /></a>';
                                                     }
                                                 }else{
                                                     pIMG = ''; 
@@ -89,16 +89,16 @@
                                                 }
                                                 
                                                 if(o.show_media && field.media_url){
-                                                   media = '<a href="http://twitter.com/' + o.username + '/status/'+field.id_str+'" target="_blank"><img src="' + field.media_url + ':'+o.show_media_size+'" alt="' + o.username + '" class="media" /></a>';
+                                                   media = '<a href="https://twitter.com/' + o.username + '/status/'+field.id_str+'" target="_blank"><img src="' + field.media_url + ':'+o.show_media_size+'" alt="' + o.username + '" class="media" /></a>';
                                                 }else{
                                                    media = ''; 
                                                 }
                                                 
                                                 if( o.show_actions ){
                                                    abox = '<div class="action-box"><ul>';
-                                                   abox += '<li class="ab_reply"><a title="Reply" href="http://twitter.com/intent/tweet?in_reply_to='+field.id_str+'">'+o.action_reply_icon+'</a></li>';
-                                                   abox += '<li class="ab_retweet"><a title="Retweet" href="http://twitter.com/intent/retweet?tweet_id='+field.id_str+'">'+o.action_retweet_icon+'</a>'+( field.retweet_count_f != '' ?'<span>'+field.retweet_count_f+'</span>':'' )+'</li>';
-                                                   abox += '<li class="ab_favorite"><a title="Favorite" href="http://twitter.com/intent/favorite?tweet_id='+field.id_str+'">'+o.action_favorite_icon+'</a>'+( field.favorite_count_f != '' ?'<span>'+field.favorite_count_f+'</span>':'' )+'</li>';
+                                                   abox += '<li class="ab_reply"><a title="Reply" href="https://twitter.com/intent/tweet?in_reply_to='+field.id_str+'">'+o.action_reply_icon+'</a></li>';
+                                                   abox += '<li class="ab_retweet"><a title="Retweet" href="https://twitter.com/intent/retweet?tweet_id='+field.id_str+'">'+o.action_retweet_icon+'</a>'+( field.retweet_count_f != '' ?'<span>'+field.retweet_count_f+'</span>':'' )+'</li>';
+                                                   abox += '<li class="ab_favorite"><a title="Favorite" href="https://twitter.com/intent/favorite?tweet_id='+field.id_str+'">'+o.action_favorite_icon+'</a>'+( field.favorite_count_f != '' ?'<span>'+field.favorite_count_f+'</span>':'' )+'</li>';
                                                    abox += '</ul></div>';
                                                 }else{
                                                   abox = '';  
@@ -110,17 +110,9 @@
                                                    mtext =  field.text;
                                                 }
                                                 
-						wInner.append('<li>' + pIMG + '<div class="tweets_txt">' + mtext.replace(urlpattern, '<a href="$1" target="_blank">$1</a>').replace(usernamepattern, '<a href="http://twitter.com/$1" target="_blank">@$1</a>').replace(hashpattern, '<a href="http://twitter.com/search?q=%23$1" target="_blank">#$1</a>') + media + ' <span>' + timestamp + '</span>'+abox+'</div></li>');
-						$('#tweecool ul li:first-Child').addClass('current');
+						wInner.append('<li>' + pIMG + '<div class="tweets_txt">' + mtext.replace(urlpattern, '<a href="$1" target="_blank">$1</a>').replace(usernamepattern, '<a href="https://twitter.com/$1" target="_blank">@$1</a>').replace(hashpattern, '<a href="https://twitter.com/search?q=%23$1" target="_blank">#$1</a>') + media + ' <span>' + timestamp + '</span>'+abox+'</div></li>');
 					});
-					function addcls() {
-							var current = $('#tweecool ul li.current').removeClass('current'),
-								next = current.next().length ? current.next() : current.siblings().filter(':first');
-								next.addClass('current');
-						};
-					 setInterval(function () {
-						addcls();
-					   }, 4000);
+
 				}).fail(function(jqxhr, textStatus, error) {
 					//var err = textStatus + ', ' + error;
 					wrapper.html('No tweets available');
